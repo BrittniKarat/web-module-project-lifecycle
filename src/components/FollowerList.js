@@ -6,7 +6,10 @@ class FollowerList extends React.Component {
     render() {
         return(<div>
             
-            {<Follower />}
+            {this.props.followers.map( user => {
+               return ( <Follower img={user.avatar_url} name={user.login} key={user.id}/>
+                )
+            })}
         
         </div>)
     }

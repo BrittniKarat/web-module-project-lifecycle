@@ -5,11 +5,11 @@ class User extends React.Component {
     render() {
         return(
           <div>
-            <img src='https://github.com/BrittniKarat' alt='Profile picture'/>
+            <img src={this.props.gitInfo.avatar_url} alt='Profile picture'/>
             <div>
-                <h2>name</h2>
-                <h3>Total Repos: </h3>
-                <h3>Total Followers: </h3>
+                <h2>{this.props.gitInfo.name}</h2>
+                <h3>Total Repos: {this.props.gitInfo.public_repos} </h3>
+                <h3>Total Followers: {this.props.gitInfo.followers}</h3>
             </div>
           </div>
         );
