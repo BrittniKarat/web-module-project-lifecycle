@@ -1,4 +1,5 @@
 import React from "react";
+import Follower from './Follower';
 
 class FollowerList extends React.Component {
 
