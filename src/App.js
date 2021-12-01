@@ -2,7 +2,48 @@ import React from 'react';
 import User from './components/User';
 import FollowerList from './components/FollowerList';
 import axios from 'axios';
+import styled from 'styled-components';
 
+const AppDiv = styled.div`
+    
+    h1{
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 0;
+    }
+
+    h2{
+      font-size: 2rem;
+
+    }
+
+    form{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    input{
+      border:${(pr) => pr.theme.tertiaryColorBG} 3px solid;
+      border-radius: 10px;
+      background-color: ${(pr) => pr.theme.secondaryColor};
+      color:${(pr) => pr.theme.tertiaryColorBG};
+      height: 30px;
+      font-weight: bold;
+    }
+
+    button{
+      background-color: ${(pr) => pr.theme.tertiaryColorBG};
+      color:${(pr) => pr.theme.secondaryColor};
+      border: none;
+      padding: 2% 4%;
+      margin: 2%;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+`
 
 class App extends React.Component {
   state = {
@@ -18,7 +59,6 @@ class App extends React.Component {
           ...this.state,
           gitInfo: res.data,
         })
-        console.log(res.data)
       })
       .catch(err => {
         console.error(err)
@@ -48,6 +88,7 @@ class App extends React.Component {
         this.setState({
           ...this.state,
           gitInfo: res.data,
+          user: ''
         })
       })
       .catch(err => {
@@ -64,17 +105,16 @@ class App extends React.Component {
           .catch(err => console.error(err)) 
   }
   render() {
-    return(<div>
-      Github Card
+    return(<AppDiv>
+      <h1> GitHub Cards</h1>
       <form>
-        <input onChange={this.handleChange} type='text' placeholder='GitHub Handle'/>
+        <input onChange={this.handleChange} type='text' placeholder='GitHub Handle' value={this.state.user}/>
         <button onClick={this.handleClick}> Search </button>
       </form>
       <User gitInfo={this.state.gitInfo}/>
       <h2>Followers:</h2>
       <FollowerList followers={this.state.followers}/>
-      {console.log(this.state.followers)}
-    </div>);
+    </AppDiv>);
   }
 }
 
